@@ -100,7 +100,7 @@ func (a *agent) action(board Board) error {
 				isUsed = true
 			}
 		}
-		if !isUsed {
+		if !isUsed && id != board.Picked {
 			avPieces = append(avPieces, id)
 		}
 	}
@@ -111,11 +111,11 @@ func (a *agent) action(board Board) error {
 		}
 	}
 
-	n := rand.Intn(len(avPieces))
-
-	if n == 0 {
+	if len(avPieces) == 0 {
 		os.Exit(0)
 	}
+
+	n := rand.Intn(len(avPieces))
 
 	ac := Action{
 		Picked: avPieces[n],
