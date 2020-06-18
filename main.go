@@ -112,18 +112,13 @@ func (a *agent) action(board Board) error {
 		}
 	}
 
-<<<<<<< HEAD
-	if len(avPieces) == 0 {
-=======
 	n := rand.Intn(len(avPieces))
 	fmt.Printf("%d hase been chosen\n", n)
 	if n == 0 {
 		fmt.Println("no available positions, exiting.")
->>>>>>> 50af1fa37ec40c8a6e868eca04e20adccd6661a9
 		os.Exit(0)
 	}
 
-	n := rand.Intn(len(avPieces))
 
 	ac := Action{
 		Picked: avPieces[n],
