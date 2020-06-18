@@ -92,6 +92,7 @@ func (a *agent) listen() {
 func (a *agent) action(board Board) error {
 	avPieces := make([]int, 0)
 	avPositions := make([]Position, 0)
+	fmt.Println("starting making an action...")
 
 	for id := range board.Pieces {
 		isUsed := false
@@ -112,8 +113,9 @@ func (a *agent) action(board Board) error {
 	}
 
 	n := rand.Intn(len(avPieces))
-
+	fmt.Printf("%d hase been chosen\n", n)
 	if n == 0 {
+		fmt.Println("no available positions, exiting.")
 		os.Exit(0)
 	}
 
@@ -125,6 +127,7 @@ func (a *agent) action(board Board) error {
 
 	b, err := json.Marshal(ac)
 	if err != nil {
+		fmt.Println("couldn't marshall the action", err.Error())
 		return err
 	}
 
@@ -133,6 +136,7 @@ func (a *agent) action(board Board) error {
 		Name:      name,
 		Type:      "action",
 	}, string(b)); err != nil {
+		fmt.Println("couldn't set the action", err.Error())
 		return err
 	}
 
